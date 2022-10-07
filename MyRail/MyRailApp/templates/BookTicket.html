@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Ticket</title>
+    <style>
+    body{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #000 !important;
+    }
+    table {
+        background-color: rgba(255,255,255,0.2);
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+      text-align: left;
+    }
+    </style>
+</head>
+<body>
+<h1 align="center">Book Ticket</h1>
+<table style="width:100%">
+    <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Capacity</th>
+        <th>Booked Seats</th>
+        <th>Remaining Seats</th>
+        <th>Price</th>
+        <th>Departure City</th>
+        <th>Arrival City</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+    </tr>
+    {% for ticketInfo_item in all_items %}
+    <tr>
+        <th>{{ ticketInfo_item.ship_name }}</th>
+        <th>{{ ticketInfo_item.ship_date }}</th>
+        <th>{{ ticketInfo_item.ship_capacity }}</th>
+        <th>{{ ticketInfo_item.ship_booked_seats }}</th>
+        <th>{{ ticketInfo_item.ship_remained_seats }}</th>
+        <th>{{ ticketInfo_item.ship_price }}</th>
+        <th>{{ ticketInfo_item.depart_seaport }}</th>
+        <th>{{ ticketInfo_item.arrive_seaport }}</th>
+        <th>{{ ticketInfo_item.depart_time }}</th>
+        <th>{{ ticketInfo_item.arrive_time }}</th>
+    </tr>
+    <form action="/bookTicket/{{ticketInfo_item.id}}" method="post">{% csrf_token %}
+        <p align="center"><input type="submit" value="Book"></p>
+    </form>
+    {% endfor %}
+</table>
+</body>
+</html>

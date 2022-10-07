@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% include 'navbar.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: hsl(0, 0%, 7%) !important;
+            font-family: 'Poppins', sans-serif;
+            color: hsl(45, 100%, 72%);
+        }
+        form{
+            font-family: 'Poppins', sans-serif;
+        }
+        table {
+            font-family: 'Poppins', sans-serif;
+            background-color: hsl(0, 0%, 22%);
+        }
+        table, th, td {
+            font-family: 'Poppins', sans-serif;
+          border: 1px hsl(45, 100%, 72%);
+          border-collapse: collapse;
+        }
+        th, td {
+            font-family: 'Poppins', sans-serif;
+          padding: 5px;
+          text-align: left;
+        }
+        </style>
+</head>
+<body>
+<h1 align="center">Info</h1>
+<table style="width:100%">
+    <tr>
+        <th>Ship Name</th>
+        <th>Ship Date</th>
+        <th>Ship Capacity</th>
+        <th>Ship Booked Seats</th>
+        <th>Ship Remaining Seats</th>
+        <th>Ship Price</th>
+        <th>Depart</th>
+        <th>Arrive</th>
+        <th>SeaPort Depart</th>
+        <th>SeaPort Arrive</th>
+        <th>Depart</th>
+        <th>Arrive</th>
+    </tr>
+    <tr>
+    <form action="/searchTicket/" method="post">{% csrf_token %}
+        <label>
+            <th><input name="search_ship_name" size="10"></th>
+            <th><input name="search_ship_date" size="5"></th>
+            <th><input name="search_ship_capacity" size="3"></th>
+            <th><input name="search_ship_booked_seats" size="3"></th>
+            <th><input name="search_ship_remained_seats" size="3"></th>
+            <th><input name="search_ship_price" size="3"></th>
+            <th><input name="search_depart_city" size="3"></th>
+            <th><input name="search_arrive_city" size="3"></th>
+            <th><input name="search_depart_seaport" size="10"></th>
+            <th><input name="search_arrive_seaport" size="10"></th>
+            <th><input name="search_depart_time" size="3"></th>
+            <th><input name="search_arrive_time" size="3"></th>
+            <th colspan="1"><input type="submit" value="Find"/></th>
+        </label>
+    </form>
+    </tr>
+    {% for ticketInfo_item in all_items %}
+    <tr>
+        <th>{{ ticketInfo_item.ship_name }}</th>
+        <th>{{ ticketInfo_item.ship_date }}</th>
+        <th>{{ ticketInfo_item.ship_capacity }}</th>
+        <th>{{ ticketInfo_item.ship_booked_seats }}</th>
+        <th>{{ ticketInfo_item.ship_remained_seats }}</th>
+        <th>{{ ticketInfo_item.ship_price }}</th>
+        <th>{{ ticketInfo_item.depart_city }}</th>
+        <th>{{ ticketInfo_item.arrive_city }}</th>
+        <th>{{ ticketInfo_item.depart_seaport }}</th>
+        <th>{{ ticketInfo_item.arrive_seaport }}</th>
+        <th>{{ ticketInfo_item.depart_time }}</th>
+        <th>{{ ticketInfo_item.arrive_time }}</th>
+        <form action="/preBookTicket/{{ticketInfo_item.id}}" method="post">{% csrf_token %}
+            <th><input type="submit" value="Book"></th>
+        </form>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

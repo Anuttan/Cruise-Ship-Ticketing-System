@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% include 'navbar.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage User</title>
+    <style>
+    body{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: rgba(122, 190, 204, 0.58) !important;
+    }
+    table {
+        background-color: rgba(255,255,255,0.2);
+    }
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+    </style>
+</head>
+<body>
+<h1 align="center">Manage Users</h1>
+
+<table style="width:100%">
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Admin</th>
+        <th>Staff</th>
+        <th>Enable</th>
+        <th colspan="2"></th>
+    </tr>
+    <tr>
+    <form action="/adminSearchUser/" method="post">{% csrf_token %}
+        <label>
+            <th><input name="search_username" size="15"></th>
+            <th><input name="search_email" size="15"></th>
+            <th><input name="search_superuser" size="5"></th>
+            <th><input name="search_staff" size="5"></th>
+            <th><input name="search_active" size="5"></th>
+            <th colspan="2"><input type="submit" value="Search"/></th>
+        </label>
+    </form>
+    </tr>
+    {% for userInfo_item in all_items %}
+    <tr>
+    <form action="/adminUpdateUser/{{userInfo_item.id}}" method="post">{% csrf_token %}
+        <label>
+            <th><input name="update_username_{{userInfo_item.id}}" value="{{ userInfo_item.username }}" size="15"/></th>
+            <th><input name="update_email_{{userInfo_item.id}}" value="{{ userInfo_item.email }}" size="15"/></th>
+            <th><input name="update_superuser_{{userInfo_item.id}}" value="{{ userInfo_item.is_superuser }}" size="5"/></th>
+            <th><input name="update_staff_{{userInfo_item.id}}" value="{{ userInfo_item.is_staff }}" size="5"/></th>
+            <th><input name="update_active_{{userInfo_item.id}}" value="{{ userInfo_item.is_active }}" size="5"/></th>
+            <th><input type="submit" value="Update"></th>
+        </label>
+    </form>
+    <form action="/adminDeleteUser/{{userInfo_item.id}}" method="post">{% csrf_token %}
+        <th><input type="submit" value="Delete"></th>
+    </form>
+    </tr>
+    {% endfor %}
+    <tr>
+    <form action="/adminAddUser/" method="post">{% csrf_token %}
+        <label>
+            <th><input type="text" name="add_username" size="15"/></th>
+            <th><input type="text" name="add_email" size="15"/></th>
+            <th><input type="text" name="add_superuser" size="5"/></th>
+            <th><input type="text" name="add_staff" size="5"/></th>
+            <th><input type="text" name="add_active" size="5"/></th>
+            <th colspan="2"><input type="submit" value="Add"/></th>
+        </label>
+    </form>
+    </tr>
+</table>
+
+</body>
+</html>

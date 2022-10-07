@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% include 'navbar.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Ship</title>
+    <style>
+    body,html{
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		background: hsl(0, 0%, 7%) !important;
+		font-family: 'Poppins', sans-serif;
+        color: hsl(45, 100%, 72%);
+	}
+    form{
+        font-family: 'Poppins', sans-serif;
+    }
+    table {
+        font-family: 'Poppins', sans-serif;
+        background-color: hsl(0, 0%, 22%);
+    }
+    table, th, td {
+        font-family: 'Poppins', sans-serif;
+      border: 1px hsl(45, 100%, 72%);
+      border-collapse: collapse;
+    }
+    th, td {
+        font-family: 'Poppins', sans-serif;
+      padding: 5px;
+      text-align: left;
+    }
+    </style>
+</head>
+<body>
+<h1 align="center">Manage Ships</h1>
+<table style="width:100%">
+    <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Capacity</th>
+        <th>Booked Seats</th>
+        <th>Remaining Seats</th>
+        <th>Price</th>
+        <th>Departure City</th>
+        <th>Arrival City</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Check In</th>
+        <th>Boarding</th>
+        <th colspan="2"></th>
+    </tr>
+    <tr>
+    <form action="/adminSearchTicket/" method="post">{% csrf_token %}
+        <label>
+            <th><input name="search_ship_name" size="10"></th>
+            <th><input name="search_ship_date" size="8"></th>
+            <th><input name="search_ship_capacity" size="3"></th>
+            <th><input name="search_ship_booked_seats" size="3"></th>
+            <th><input name="search_ship_remained_seats" size="3"></th>
+            <th><input name="search_ship_price" size="3"></th>
+            <th><input name="search_depart_seaport" size="10"></th>
+            <th><input name="search_arrive_seaport" size="10"></th>
+            <th><input name="search_depart_time" size="3"></th>
+            <th><input name="search_arrive_time" size="3"></th>
+            <th><input name="search_checkin_windows" size="3"></th>
+            <th><input name="search_boarding_port" size="3"></th>
+            <th colspan="2"><input type="submit" value="Search"/></th>
+        </label>
+    </form>
+    </tr>
+    {% for ticketInfo_item in all_items %}
+    <tr>
+    <form action="/adminUpdateTicket/{{ticketInfo_item.id}}" method="post">{% csrf_token %}
+        <label>
+            <th><input name="update_ship_name_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_name }}" size="10"/></th>
+            <th><input name="update_ship_date_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_date }}" size="8"/></th>
+            <th><input name="update_ship_capacity_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_capacity }}" size="3"/></th>
+            <th><input name="update_ship_booked_seats_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_booked_seats }}" size="3"/></th>
+            <th><input name="update_ship_remained_seats_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_remained_seats }}" size="3"/></th>
+            <th><input name="update_ship_price_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_price }}" size="3"/></th>
+            <th><input name="update_depart_seaport_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.depart_seaport }}" size="10"/></th>
+            <th><input name="update_arrive_seaport_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.arrive_seaport }}" size="10"/></th>
+            <th><input name="update_depart_time_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.depart_time }}" size="3"/></th>
+            <th><input name="update_arrive_time_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.arrive_time }}" size="3"/></th>
+            <th><input name="update_checkin_windows_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.checkinitem__checkin_windows }}" size="3"/></th>
+            <th><input name="update_boarding_port_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.checkinitem__boarding_port }}" size="3"/></th>
+            <th><input type="submit" value="Update"></th>
+        </label>
+    </form>
+    <form action="/adminDeleteTicket/{{ticketInfo_item.id}}" method="post">{% csrf_token %}
+        <th><input type="submit" value="Delete"></th>
+    </form>
+    </tr>
+    {% endfor %}
+    <tr>
+    <form action="/adminAddTicket/" method="post">{% csrf_token %}
+        <label>
+            <th><input type="text" name="add_ship_name" size="10"/></th>
+            <th><input type="text" name="add_ship_date" size="8"/></th>
+            <th><input type="text" name="add_ship_capacity" size="3"/></th>
+            <th><input type="text" name="add_ship_booked_seats" size="3"/></th>
+            <th><input type="text" name="add_ship_remained_seats" size="3"/></th>
+            <th><input type="text" name="add_ship_price" size="3"/></th>
+            <th><input type="text" name="add_depart_seaport" size="10"/></th>
+            <th><input type="text" name="add_arrive_seaport" size="10"/></th>
+            <th><input type="text" name="add_depart_time" size="3"/></th>
+            <th><input type="text" name="add_arrive_time" size="3"/></th>
+            <th><input type="text" name="add_checkin_windows" size="3"/></th>
+            <th><input type="text" name="add_boarding_port" size="3"/></th>
+            <th colspan="2"><input type="submit" value="Add"></th>
+        </label>
+    </form>
+    </tr>
+</table>
+</body>
+</html>

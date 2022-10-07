@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check In</title>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: hsl(0, 0%, 7%) !important;
+            font-family: 'Poppins', sans-serif;
+            color: hsl(45, 100%, 72%);
+        }
+        form{
+            font-family: 'Poppins', sans-serif;
+        }
+        table {
+            font-family: 'Poppins', sans-serif;
+            background-color: hsl(0, 0%, 22%);
+        }
+        table, th, td {
+            font-family: 'Poppins', sans-serif;
+          border: 1px hsl(45, 100%, 72%);
+          border-collapse: collapse;
+        }
+        th, td {
+            font-family: 'Poppins', sans-serif;
+          padding: 5px;
+          text-align: left;
+        }
+        </style>
+</head>
+<body>
+<h1 align="center">Check In</h1>
+<table style="width:100%">
+<tr>
+        <th>Ship Name</th>
+        <th>Ship Date</th>
+        <th>Ship Capacity</th>
+        <th>Ship Booked Seats</th>
+        <th>Ship Remaining Seats</th>
+        <th>Ship Price</th>
+        <th>Depart</th>
+        <th>Arrive</th>
+        <th>SeaPort Depart</th>
+        <th>SeaPort Arrive</th>
+        <th>Depart</th>
+        <th>Arrive</th>
+        <th>Check In</th>
+        <th>Boarding</th>
+        <th>Seat No.</th>
+    </tr>
+    {% for ticketInfo_item in all_items %}
+    <tr>
+        <th>{{ ticketInfo_item.ship_name }}</th>
+        <th>{{ ticketInfo_item.ship_date }}</th>
+        <th>{{ ticketInfo_item.ship_capacity }}</th>
+        <th>{{ ticketInfo_item.ship_booked_seats }}</th>
+        <th>{{ ticketInfo_item.ship_remained_seats }}</th>
+        <th>{{ ticketInfo_item.ship_price }}</th>
+        <th>{{ ticketInfo_item.depart_city }}</th>
+        <th>{{ ticketInfo_item.arrive_city }}</th>
+        <th>{{ ticketInfo_item.depart_seaport }}</th>
+        <th>{{ ticketInfo_item.arrive_seaport }}</th>
+        <th>{{ ticketInfo_item.depart_time }}</th>
+        <th>{{ ticketInfo_item.arrive_time }}</th>
+        <th>{{ ticketInfo_item.checkinitem__checkin_windows }}</th>
+        <th>{{ ticketInfo_item.checkinitem__boarding_port }}</th>
+        <th>{{ ticketInfo_item.bookticketitem__seat_id }}</th>
+    </tr>
+    {% endfor %}
+</table>
+<a style="color: #a94442">Note: Please pick up your ticket at the designated window two hours before departure.</a>
+<form action="/myTicketInfo/" method="post">{% csrf_token %}
+    <p align="center"><input type="submit" value="Go Back"></p>
+</form>
+</body>
+</html>
