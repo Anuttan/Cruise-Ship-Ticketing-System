@@ -44,6 +44,8 @@
         <th>Price</th>
         <th>Departure City</th>
         <th>Arrival City</th>
+        <th>Departure Seaport</th>
+        <th>Arrival Seaport</th>
         <th>Departure Time</th>
         <th>Arrival Time</th>
         <th>Check In</th>
@@ -59,6 +61,8 @@
             <th><input name="search_ship_booked_seats" size="3"></th>
             <th><input name="search_ship_remained_seats" size="3"></th>
             <th><input name="search_ship_price" size="3"></th>
+            <th><input name="search_depart_city" size="3"></th>
+            <th><input name="search_arrive_city" size="3"></th>
             <th><input name="search_depart_seaport" size="10"></th>
             <th><input name="search_arrive_seaport" size="10"></th>
             <th><input name="search_depart_time" size="3"></th>
@@ -79,6 +83,8 @@
             <th><input name="update_ship_booked_seats_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_booked_seats }}" size="3"/></th>
             <th><input name="update_ship_remained_seats_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_remained_seats }}" size="3"/></th>
             <th><input name="update_ship_price_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.ship_price }}" size="3"/></th>
+            <th><input name="update_depart_city_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.depart_city }}" size="3"/></th>
+            <th><input name="update_arrive_city_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.arrive_city }}" size="3"/></th>
             <th><input name="update_depart_seaport_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.depart_seaport }}" size="10"/></th>
             <th><input name="update_arrive_seaport_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.arrive_seaport }}" size="10"/></th>
             <th><input name="update_depart_time_{{ ticketInfo_item.id }}" value="{{ ticketInfo_item.depart_time }}" size="3"/></th>
@@ -102,6 +108,8 @@
             <th><input type="text" name="add_ship_booked_seats" size="3"/></th>
             <th><input type="text" name="add_ship_remained_seats" size="3"/></th>
             <th><input type="text" name="add_ship_price" size="3"/></th>
+            <th><input type="text" name="add_depart_city" size="3"/></th>
+            <th><input type="text" name="add_arrive_city" size="3"/></th>
             <th><input type="text" name="add_depart_seaport" size="10"/></th>
             <th><input type="text" name="add_arrive_seaport" size="10"/></th>
             <th><input type="text" name="add_depart_time" size="3"/></th>
